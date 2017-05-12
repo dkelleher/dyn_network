@@ -13,7 +13,8 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 module.exports = {
   context: path.resolve(__dirname, './src'),
   entry: {
-    app: './app.js',
+    app: './app.coffee',
+    network: './network.coffee',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -31,6 +32,13 @@ module.exports = {
           loader: 'babel-loader',
           options: { presets: ['es2015'] },
         }],
+      },
+      {
+        test: /\.coffee$/,
+        exclude: [/node_modules/],
+        use: [{
+          loader: 'coffee-loader',
+        }]
       },
       {
         test: /\.css$/,
